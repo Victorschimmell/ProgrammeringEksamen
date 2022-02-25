@@ -9,7 +9,7 @@ public class MenuController {
 
     @FXML
     private void switchToKontakter() throws IOException {
-        u = new User(1, "navn", "Kode", "[1,2,3,4,5]");
+        u = new User(1, "navn", "Kode", "[1,2,3,4,5,6,7,8,9]");
         u.getPassword();
         u.getFriends();
 
