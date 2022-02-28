@@ -2,6 +2,7 @@ package org.openjfx.ProgEksamensProjekt;
 
 import java.security.*;
 import java.util.Arrays;
+import java.sql.*;
 
 public class User {
 
@@ -10,8 +11,8 @@ public class User {
     private String password;
     public int[] friends;
 
-    public User(int id, String username, String password, String savedFriends) {
-        this.id = id;
+    public User(String username, String password, String savedFriends) {
+
         this.username = username;
         this.password = password;
 
@@ -26,6 +27,28 @@ public class User {
     }
 
     public int getID() {
+
+        Connection conn = null;
+        String query = null;
+
+        try {
+
+            conn = DriverManager.getConnection(MenuController.connectionString);
+            query = "SELECT ID FROM Users WHERE Username = '" + getUsername() + "'";
+
+            try (PreparedStatement pstmt = conn.prepareStatement(query)) {
+                ResultSet rs = pstmt.executeQuery();
+
+                id = rs.getInt(1);
+
+            } catch (SQLException e) {
+                System.out.println("FUCK2" + e);
+            }
+
+        } catch (Exception e) {
+            System.out.println("FUCK");
+        }
+
         return id;
     }
 
@@ -62,11 +85,15 @@ public class User {
         return username;
     }
 
-    public int[] getFriends(){
+    public int[] getFriends() {
 
         System.out.println("FriendList:" + Arrays.toString(friends));
 
         return friends;
+    }
+
+    public String getFriendsString() {
+        return Arrays.toString(friends);
     }
 
 }

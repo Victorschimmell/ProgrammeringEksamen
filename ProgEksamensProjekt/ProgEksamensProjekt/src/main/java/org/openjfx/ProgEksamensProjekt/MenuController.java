@@ -1,19 +1,48 @@
 package org.openjfx.ProgEksamensProjekt;
 
-import java.io.IOException;
 import javafx.fxml.FXML;
+import java.sql.*;
 
 public class MenuController {
 
-    User u;
+    public User currentUser;
+    public final static String connectionString = "jdbc:sqlite:src/Database.db";
 
     @FXML
-    private void switchToKontakter() throws IOException {
-        u = new User(1, "navn", "Kode", "[1,2,3,4,5,6,7,8,9]");
-        u.getPassword();
-        u.getFriends();
+    private void switchToKontakter() throws SQLException, Exception {
+        currentUser = new User("Navn7", "Kode", "[1,2]");
+
+        saveUser(currentUser);
+
+        System.out.println(currentUser.getID());
 
         App.setRoot("Kontakter");
+
+    }
+
+    private void saveUser(User u) throws SQLException, Exception {
+        Connection conn = null;
+        Class.forName("org.sqlite.JDBC");
+        String query = null;
+
+        try {
+
+            conn = DriverManager.getConnection(connectionString);
+            query = "INSERT INTO Users(Username, Password, Friends) VALUES('" + u.getUsername() + "','" + u.getPassword() + "','" + u.getFriendsString() +"')";
+
+            try (PreparedStatement pstmt = conn.prepareStatement(query)) {
+                pstmt.executeUpdate();
+            } catch (SQLException e) {
+                // TODO: handle exception
+                System.out.println("Username already used");
+            }
+        } catch (Exception e) {
+            System.out.println("Something gone bad");
+
+        } finally {
+            conn.close();
+
+        }
 
     }
 }
