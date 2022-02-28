@@ -15,6 +15,7 @@ public class User {
 
         this.username = username;
         this.password = password;
+        //HEJSA
 
         String[] string = savedFriends.replaceAll("\\[", "")
                 .replaceAll("]", "")
