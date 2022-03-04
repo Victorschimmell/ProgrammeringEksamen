@@ -1,5 +1,13 @@
+org\openjfx\JavaChat\ChatController.class
+org\openjfx\JavaChat\KontaktController$1.class
+org\openjfx\JavaChat\MenuController.class
+org\openjfx\JavaChat\KontaktController.class
+org\openjfx\JavaChat\App.class
+org\openjfx\JavaChat\Client.class
+org\openjfx\JavaChat\Server.class
+org\openjfx\JavaChat\Encryptor.class
+org\openjfx\JavaChat\NetworkConnection$ConnectionThread.class
 module-info.class
-org\openjfx\gamereviews\SecondaryController.class
-org\openjfx\gamereviews\App.class
-org\openjfx\gamereviews\RandomString.class
-org\openjfx\gamereviews\PrimaryController.class
+org\openjfx\JavaChat\NetworkConnection.class
+org\openjfx\JavaChat\DataPacket.class
+org\openjfx\JavaChat\User.class
